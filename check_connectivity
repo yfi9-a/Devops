@@ -1,0 +1,22 @@
+#!bin/bash
+# description : check remote hosts connectivity
+# author : yousef fikry 
+# email : yfi2030@gmail.com
+
+hosts="/home/jo/scripts/real_life_scripts/hostsFile"
+
+for ip in $(cat $hosts)
+do
+  ping -c1 $ip &> /dev/null
+  if [ $? -eq 0 ]
+  then
+    echo "$ip is ok"
+  else
+    echo "$ip is not ok"
+  fi
+done
+
+
+
+
+
