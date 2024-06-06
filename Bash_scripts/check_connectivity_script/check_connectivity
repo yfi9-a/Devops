@@ -3,20 +3,20 @@
 # author : yousef fikry 
 # email : yfi2030@gmail.com
 
-hosts="/home/jo/scripts/real_life_scripts/hostsFile"
+hosts="./hostsFile"
 
-for ip in $(cat $hosts)
+for item in $(cat $hosts)
 do
-  ping -c1 $ip &> /dev/null
+  ip=$(echo ${item} | cut -d "-" -f 1)
+  name=$(echo ${item} | cut -d "-" -f 2)
+  
+  ping -c 1 $ip &> /dev/null
+  
   if [ $? -eq 0 ]
-  then
-    echo "$ip is ok"
-  else
-    echo "$ip is not ok"
+  then 
+    echo $name is OK
+  else 
+    echo $name is Not OK
   fi
+
 done
-
-
-
-
-
